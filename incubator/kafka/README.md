@@ -65,6 +65,7 @@ following configurable parameters:
 | `zookeeper.Enabled`       | If True, installs Zookeeper Chart                                 | `true`                                                     |
 | `zookeeper.Url`           | URL of Zookeeper Cluster (unneeded if installing Zookeeper Chart) | `""`                                                       |
 | `zookeeper.Port`          | Port of Zookeeper Cluster                                         | `2181`                                                     |
+| `antiAffinity` | If present it must take the values 'hard' or 'soft'. 'hard' will cause the Kubernetes scheduler to not schedule the Pods on the same physical node under any circumstances 'soft' will cause the Kubernetes scheduler to make a best effort to not co-locate the Pods, but, if the only available resources are on the same node, the scheduler will co-locate them. | `hard` |
 
 Specify parameters using `--set key=value[,key=value]` argument to `helm install`
 
