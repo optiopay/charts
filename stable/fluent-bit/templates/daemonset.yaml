@@ -54,6 +54,11 @@ spec:
           mountPath: /fluent-bit/etc/parsers_custom.conf
           subPath: parsers.conf
 {{- end }}
+{{- if .Values.filter.lua.enabled }}
+        - name: config
+          mountPath: /fluent-bit/etc/{{ .Values.filter.lua.scriptFilename }}
+          subPath: {{ .Values.filter.lua.scriptFilename }}
+{{- end }}
 {{- if .Values.backend.es.tls_ca }}
         - name: es-tls-secret
           mountPath: /secure/es-tls-ca.crt

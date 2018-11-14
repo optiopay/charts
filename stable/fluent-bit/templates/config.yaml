@@ -55,6 +55,13 @@ data:
 {{- end }}
 {{ .Values.extraFilters | indent 8 }}
 
+{{- if .Values.filter.lua.enabled }}
+    [FILTER]
+        Name    lua
+        Match   {{ .Values.filter.kubeTag }}.*
+        script  /fluent-bit/etc/{{ .Values.filter.lua.scriptFilename }}
+        call    {{ .Values.filter.lua.call }}
+{{- end }}
 {{ if eq .Values.backend.type "test" }}
     [OUTPUT]
         Name  file
@@ -165,6 +172,10 @@ data:
         Decode_Field_As {{ .decodeFieldAs }} {{ .decodeField | default "log" }}
 {{- end }}
 {{ end }}
+{{- end }}
+
+{{- if .Values.filter.lua.enabled }}
+  {{ .Values.filter.lua.scriptFilename }}: {{ .Values.filter.lua.scriptContents }}
 {{- end }}
 
 {{- end -}}
