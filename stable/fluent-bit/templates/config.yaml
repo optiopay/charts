@@ -175,7 +175,8 @@ data:
 {{- end }}
 
 {{- if .Values.filter.lua.enabled }}
-  {{ .Values.filter.lua.scriptFilename }}: {{ .Values.filter.lua.scriptContents }}
+  {{ .Values.filter.lua.scriptFilename }}: |-
+{{ .Values.filter.lua.scriptContents | indent 4 }}
 {{- end }}
 
 {{- end -}}
