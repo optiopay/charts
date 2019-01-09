@@ -560,6 +560,9 @@ prometheusOperator:
     tag: v1.12.1
     pullPolicy: IfNotPresent
 
+  ## Extra arguments for the operator
+  extraArgs: {}
+
 ## Deploy a Prometheus instance
 ##
 prometheus:
